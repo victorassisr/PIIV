@@ -12,6 +12,8 @@ module.exports = function(app){
 
 		if(req.body.nome != undefined && req.body.dataNascimento != undefined && req.body.dataInicioExecucao != undefined && req.body.cpf != undefined && req.body.dataFimExecucao != undefined){
 			
+			var professor = req.body;
+
 			var nome = req.body.nome;
 			var cpf = req.body.cpf;
 			var dataNascimento = req.body.dataNascimento;
@@ -25,7 +27,7 @@ module.exports = function(app){
 					throw err;
 				}
 
-				res.status(200).send({ nome: nome, cpf: cpf, dataNascimento: dataNascimento, dataInicioExecucao: dataIniExec, dataFimExecucao: dataFimExec });
+				res.status(200).send({ professor });
 			}); //Query
 
 		} else {

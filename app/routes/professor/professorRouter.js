@@ -8,13 +8,12 @@ module.exports = function(app){
 
 			var sql = "SELECT * FROM professor";
 
-			con.query(sql,function(err, success, fields){
+			con.query(sql,function(err, resultSet, fields){
 				if(err){
 					throw err;
 				}
 
-				console.log(success);
-				res.status(200).send({ professores : success });
+				res.status(200).send({ professores : resultSet });
 			}); //Query
 	});//Fim rota
 }
