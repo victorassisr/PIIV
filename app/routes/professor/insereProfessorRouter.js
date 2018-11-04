@@ -1,4 +1,5 @@
 var conMysql = require('../../../config/conMysql');
+var bcrypt = require("bcryptjs");
 
 module.exports = function(app){
 
@@ -7,6 +8,13 @@ module.exports = function(app){
 	app.post('/professor',function(req, res){
 
 		console.log(req.body);
+		/*
+		if(req.body.email == undefined && req.body.email == "" && req.body.senha == undefined && req.body.senha == ""){
+			res.status(400).send({err: "Email ou Senha não são válidos!"});
+		} else{
+			email = req.body.email;
+			var senha = req.body.senha;
+		} */
 
 		if(req.body.nome != undefined && req.body.dataNascimento != undefined && req.body.dataInicioExecucao != undefined && req.body.cpf != undefined){
 			var nome = req.body.nome;
