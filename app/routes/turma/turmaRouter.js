@@ -4,16 +4,16 @@ module.exports = function(app){
 
 	var con = conMysql();
 
-	app.get('/aluno',function(req, res){
+	app.get('/turma',function(req, res){
 
-			var sql = "SELECT * FROM aluno";
+			var sql = "SELECT * FROM turma";
 
 			con.query(sql,function(err, resultSet, fields){
 				if(err){
 					throw err;
 				}
 
-				res.status(200).send({ alunos : resultSet });
+				res.status(200).send({ turmas : resultSet });
 			}); //Query
 	});//Fim rota
 }

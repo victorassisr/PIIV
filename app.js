@@ -25,6 +25,13 @@ var deletaSerieRouter = require('./app/routes/serie/deletaSerieRouter')(app);
 var insereSerieRouter = require('./app/routes/serie/insereSerieRouter')(app);
 var editaSerieRouter = require('./app/routes/serie/editaSerieRouter')(app);
 
+//Rotas Turma
+var turmaRouter = require('./app/routes/turma/turmaRouter')(app);
+var idTurmaRouter = require('./app/routes/turma/idTurmaRouter')(app);
+var deletaTurmaRouter = require('./app/routes/turma/deletaTurmaRouter')(app);
+var insereTurmaRouter = require('./app/routes/turma/insereTurmaRouter')(app);
+var editaTurmaRouter = require('./app/routes/turma/editaTurmaRouter')(app);
+
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");
 });

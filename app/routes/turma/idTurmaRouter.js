@@ -4,11 +4,11 @@ module.exports = function(app){
 
 	var con = conMysql();
 
-	app.get('/aluno/:id',function(req, res){
+	app.get('/turma/:id',function(req, res){
 
 			var id = req.params.id;
 
-			var sql = "SELECT * FROM aluno WHERE matricula="+id;
+			var sql = "SELECT * FROM turma WHERE idTurma="+id;
 
 			con.query(sql,function(err, resultSet, fields){
 				if(err){
@@ -16,9 +16,9 @@ module.exports = function(app){
 				}
 				
 				if(typeof resultSet[0] != "undefined"){
-					res.status(200).send({ aluno : resultSet });
+					res.status(200).send({ turma : resultSet });
 				} else{
-					res.status(200).send({ aluno : 'Nenhum aluno encontrado!' });
+					res.status(200).send({ turma : 'Nenhuma turma encontrada!' });
 				} 
 			}); //Query
 	});//Fim rota
