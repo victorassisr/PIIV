@@ -4,24 +4,24 @@ module.exports = function(app){
 
 	var con = conMysql();
 
-	app.put('/serie/:id',function(req, res){
+	app.put('/disciplina/:id',function(req, res){
 
 		console.log(req.body);
 
-		var idSerie = req.params.id;
+		var d = req.body;
 
-		if(req.body.descricao != undefined){
-			
-			var desc = req.body.descricao;
+		var id = req.params.id;
 
-			var sql = "UPDATE serie SET descSerie = '"+desc+"' WHERE idSerie="+idSerie;
+		if(d.descricao != undefined){
+
+			var sql = "UPDATE disciplina SET descricao = '"+d.descricao+"' WHERE idDisciplina="+id;
 
 			con.query(sql, function(err, success, fields){
 				if(err){
 					throw err;
 				}
 
-				res.status(200).send({ serie : desc });
+				res.status(200).send({ disciplina : d });
 			}); //Query
 
 		} else {

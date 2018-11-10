@@ -32,6 +32,20 @@ var deletaTurmaRouter = require('./app/routes/turma/deletaTurmaRouter')(app);
 var insereTurmaRouter = require('./app/routes/turma/insereTurmaRouter')(app);
 var editaTurmaRouter = require('./app/routes/turma/editaTurmaRouter')(app);
 
+//Rotas Aviso
+var avisoRouter = require('./app/routes/aviso/avisoRouter')(app);
+var idAvisoRouter = require('./app/routes/aviso/idAvisoRouter')(app);
+var deletaAvisoRouter = require('./app/routes/aviso/deletaAvisoRouter')(app);
+var insereAvisoRouter = require('./app/routes/aviso/insereAvisoRouter')(app);
+var editaAvisoRouter = require('./app/routes/aviso/editaAvisoRouter')(app);
+
+//Rotas Disciplina
+var disciplinaRouter = require('./app/routes/disciplina/disciplinaRouter')(app);
+var idDisciplinaRouter = require('./app/routes/disciplina/idDisciplinaRouter')(app);
+var deletaDisciplinaRouter = require('./app/routes/disciplina/deletaDisciplinaRouter')(app);
+var insereDisciplinaRouter = require('./app/routes/disciplina/insereDisciplinaRouter')(app);
+var editaDisciplinaRouter = require('./app/routes/disciplina/editaDisciplinaRouter')(app);
+
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");
 });
