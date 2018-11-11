@@ -46,6 +46,13 @@ var deletaDisciplinaRouter = require('./app/routes/disciplina/deletaDisciplinaRo
 var insereDisciplinaRouter = require('./app/routes/disciplina/insereDisciplinaRouter')(app);
 var editaDisciplinaRouter = require('./app/routes/disciplina/editaDisciplinaRouter')(app);
 
+//Rotas Frequencia
+var frequenciaRouter = require('./app/routes/frequencia/frequenciaRouter')(app);
+var idFrequenciaRouter = require('./app/routes/frequencia/idFrequenciaRouter')(app);
+var deletaFrequenciaRouter = require('./app/routes/frequencia/deletaFrequenciaRouter')(app);
+var insereFrequenciaRouter = require('./app/routes/frequencia/insereFrequenciaRouter')(app);
+var editaFrequenciaRouter = require('./app/routes/frequencia/editaFrequenciaRouter')(app);
+
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");
 });
