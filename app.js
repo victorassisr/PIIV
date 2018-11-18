@@ -75,6 +75,13 @@ var deletaTFRouter = require('./app/routes/turmaFechada/deletaTFRouter')(app);
 var insereTFRouter = require('./app/routes/turmaFechada/insereTFRouter')(app);
 var editaTFRouter = require('./app/routes/turmaFechada/editaTFRouter')(app);
 
+//Rotas Horario
+var HorarioRouter = require('./app/routes/horario/HorarioRouter')(app);
+var idHorarioRouter = require('./app/routes/horario/idHorarioRouter')(app);
+var deletaHorarioRouter = require('./app/routes/horario/deletaHorarioRouter')(app);
+var insereHorarioRouter = require('./app/routes/horario/insereHorarioRouter')(app);
+var editaHorarioRouter = require('./app/routes/horario/editaHorarioRouter')(app);
+
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");
 });

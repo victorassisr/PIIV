@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 11-Nov-2018 às 18:31
+-- Generation Time: 18-Nov-2018 às 22:15
 -- Versão do servidor: 5.7.17-log
 -- PHP Version: 5.6.30
 
@@ -19,7 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `portal_escolar`
 --
-DROP DATABASE IF EXISTS `portal_escolar`;
 CREATE DATABASE IF NOT EXISTS `portal_escolar` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `portal_escolar`;
 
@@ -72,6 +71,29 @@ INSERT INTO `aviso` (`idNoticia`, `titulo`, `autor`, `corpo`, `dataPostagem`) VA
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `diassemana`
+--
+
+CREATE TABLE `diassemana` (
+  `idDia` tinyint(4) NOT NULL,
+  `descDia` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `diassemana`
+--
+
+INSERT INTO `diassemana` (`idDia`, `descDia`) VALUES
+(1, 'Segunda-Feira'),
+(2, 'Terça-Feira'),
+(3, 'Quarta-Feira'),
+(4, 'Quinta-Feira'),
+(5, 'Sexta-Feira'),
+(6, 'Sabado');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `disciplina`
 --
 
@@ -99,11 +121,53 @@ INSERT INTO `disciplina` (`idDisciplina`, `descricao`) VALUES
 
 CREATE TABLE `frequencia` (
   `idFrequencia` int(11) NOT NULL,
+  `idDisciplina` int(11) NOT NULL,
   `idTurmaFechada` int(11) NOT NULL,
-  `matricula` int(11) NOT NULL,
-  `dataRegistro` date NOT NULL,
+  `dataRegistro` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `frequencia`
+--
+
+INSERT INTO `frequencia` (`idFrequencia`, `idDisciplina`, `idTurmaFechada`, `dataRegistro`) VALUES
+(2, 2, 2, '2018-12-10'),
+(3, 2, 1, '2018-11-10'),
+(4, 3, 1, '2018-11-10');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `frequencia_aluno`
+--
+
+CREATE TABLE `frequencia_aluno` (
+  `idAluno` int(11) NOT NULL,
+  `idFrequencia` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `horario`
+--
+
+CREATE TABLE `horario` (
+  `idHorario` int(11) NOT NULL,
+  `idPDT` int(11) NOT NULL,
+  `idDia` int(11) NOT NULL,
+  `horario` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `horario`
+--
+
+INSERT INTO `horario` (`idHorario`, `idPDT`, `idDia`, `horario`) VALUES
+(1, 1, 2, '20:30:00'),
+(2, 2, 1, '21:30:00'),
+(3, 3, 1, '20:30:00');
 
 -- --------------------------------------------------------
 
@@ -160,6 +224,28 @@ INSERT INTO `professor` (`idProfessor`, `nome`, `cpf`, `dataNascimento`, `dataIn
 (18, 'Marcos Antonio teste', 11427845690, '1994-11-17', '2005-04-07', '2007-05-12'),
 (19, 'Marcos Antonio teste', 11427845690, '1994-11-17', '2005-04-07', '2007-05-12'),
 (20, 'Marcos Antonio teste', 11427845690, '1994-11-17', '2005-04-07', '2007-05-12');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `professor_disciplina_turma`
+--
+
+CREATE TABLE `professor_disciplina_turma` (
+  `idPDT` int(11) NOT NULL,
+  `idPRofessor` int(11) NOT NULL,
+  `idDisciplina` int(11) NOT NULL,
+  `idTurmaFechada` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `professor_disciplina_turma`
+--
+
+INSERT INTO `professor_disciplina_turma` (`idPDT`, `idPRofessor`, `idDisciplina`, `idTurmaFechada`) VALUES
+(1, 12, 2, 2),
+(2, 15, 5, 2),
+(3, 16, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -223,9 +309,19 @@ CREATE TABLE `turmafechada` (
   `idTurmaFechada` int(11) NOT NULL,
   `idSerie` int(11) NOT NULL,
   `idTurma` int(11) NOT NULL,
-  `dataInicial` date NOT NULL,
-  `dataFinal` date NOT NULL
+  `anoLetivo` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `turmafechada`
+--
+
+INSERT INTO `turmafechada` (`idTurmaFechada`, `idSerie`, `idTurma`, `anoLetivo`) VALUES
+(1, 2, 2, 2012),
+(2, 4, 3, 2013),
+(3, 4, 1, 2013),
+(4, 1, 1, 2015),
+(5, 2, 1, 2015);
 
 --
 -- Indexes for dumped tables
@@ -244,10 +340,34 @@ ALTER TABLE `aviso`
   ADD PRIMARY KEY (`idNoticia`);
 
 --
+-- Indexes for table `diassemana`
+--
+ALTER TABLE `diassemana`
+  ADD PRIMARY KEY (`idDia`);
+
+--
 -- Indexes for table `disciplina`
 --
 ALTER TABLE `disciplina`
   ADD PRIMARY KEY (`idDisciplina`);
+
+--
+-- Indexes for table `frequencia`
+--
+ALTER TABLE `frequencia`
+  ADD PRIMARY KEY (`idFrequencia`);
+
+--
+-- Indexes for table `frequencia_aluno`
+--
+ALTER TABLE `frequencia_aluno`
+  ADD PRIMARY KEY (`idAluno`,`idFrequencia`);
+
+--
+-- Indexes for table `horario`
+--
+ALTER TABLE `horario`
+  ADD PRIMARY KEY (`idHorario`);
 
 --
 -- Indexes for table `login`
@@ -260,6 +380,12 @@ ALTER TABLE `login`
 --
 ALTER TABLE `professor`
   ADD PRIMARY KEY (`idProfessor`);
+
+--
+-- Indexes for table `professor_disciplina_turma`
+--
+ALTER TABLE `professor_disciplina_turma`
+  ADD PRIMARY KEY (`idPDT`);
 
 --
 -- Indexes for table `serie`
@@ -300,15 +426,35 @@ ALTER TABLE `aluno`
 ALTER TABLE `aviso`
   MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT for table `diassemana`
+--
+ALTER TABLE `diassemana`
+  MODIFY `idDia` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `disciplina`
 --
 ALTER TABLE `disciplina`
   MODIFY `idDisciplina` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
+-- AUTO_INCREMENT for table `frequencia`
+--
+ALTER TABLE `frequencia`
+  MODIFY `idFrequencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `horario`
+--
+ALTER TABLE `horario`
+  MODIFY `idHorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
   MODIFY `idProfessor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `professor_disciplina_turma`
+--
+ALTER TABLE `professor_disciplina_turma`
+  MODIFY `idPDT` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `serie`
 --
@@ -328,7 +474,7 @@ ALTER TABLE `turma`
 -- AUTO_INCREMENT for table `turmafechada`
 --
 ALTER TABLE `turmafechada`
-  MODIFY `idTurmaFechada` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idTurmaFechada` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
