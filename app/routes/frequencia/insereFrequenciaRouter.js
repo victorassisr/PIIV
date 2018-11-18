@@ -10,9 +10,9 @@ module.exports = function(app){
 
 		var f = req.body;
 
-		if(f.idDisciplina != undefined && f.idTurma != undefined && f.dataRegistro != undefined){
+		if(f.idDisciplina != undefined && f.idTurmaFechada != undefined && f.dataRegistro != undefined){
 
-			var sql = "INSERT INTO frequencia(idDisciplina, idTurma, dataRegistro) VALUES('"+f.idDisciplina+"','"+f.idTurma+"','"+f.dataRegistro+"')";
+			var sql = "INSERT INTO frequencia(idDisciplina, idTurmaFechada, dataRegistro) VALUES('"+f.idDisciplina+"','"+f.idTurma+"','"+f.dataRegistro+"')";
 
 			con.query(sql, function(err, success, fields){
 				if(err){

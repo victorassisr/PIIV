@@ -4,11 +4,11 @@ module.exports = function(app){
 
 	var con = conMysql();
 
-	app.delete('/pdt/:id',function(req, res){
+	app.delete('/tf/:id',function(req, res){
 
 			var id = req.params.id;
 
-			var sql = "DELETE FROM professor_disciplina_turma WHERE idPDT="+id;
+			var sql = "DELETE FROM turmaFechada WHERE idTurmaFechada="+id;
 
 			con.query(sql,function(err, success, fields){
 				if(err){

@@ -54,11 +54,11 @@ var insereFrequenciaRouter = require('./app/routes/frequencia/insereFrequenciaRo
 var editaFrequenciaRouter = require('./app/routes/frequencia/editaFrequenciaRouter')(app);
 
 //Rotas registroFrequencia
-var regFrequenciaRouter = require('./app/routes/registroFrequencia/registroFrequenciaRouter')(app);
-var idRegFrequenciaRouter = require('./app/routes/registroFrequencia/idRegistroFrequenciaRouter')(app);
-var deletaRegFrequenciaRouter = require('./app/routes/registroFrequencia/deletaRegistroFrequenciaRouter')(app);
-var insereRegFrequenciaRouter = require('./app/routes/registroFrequencia/insereRegistroFrequenciaRouter')(app);
-var editaRegFrequenciaRouter = require('./app/routes/registroFrequencia/editaRegistroFrequenciaRouter')(app);
+//var regFrequenciaRouter = require('./app/routes/registroFrequencia/registroFrequenciaRouter')(app);
+//var idRegFrequenciaRouter = require('./app/routes/registroFrequencia/idRegistroFrequenciaRouter')(app);
+//var deletaRegFrequenciaRouter = require('./app/routes/registroFrequencia/deletaRegistroFrequenciaRouter')(app);
+//var insereRegFrequenciaRouter = require('./app/routes/registroFrequencia/insereRegistroFrequenciaRouter')(app);
+//var editaRegFrequenciaRouter = require('./app/routes/registroFrequencia/editaRegistroFrequenciaRouter')(app);
 
 
 //Rotas professor_disciplina_turma
@@ -67,6 +67,13 @@ var idPdtRouter = require('./app/routes/pdt/idPdtRouter')(app);
 var deletaPdtRouter = require('./app/routes/pdt/deletaPdtRouter')(app);
 var inserePdtRouter = require('./app/routes/pdt/inserePdtRouter')(app);
 var editaPdtRouter = require('./app/routes/pdt/editaPdtRouter')(app);
+
+//Rotas turmaFechada
+var TFRouter = require('./app/routes/turmaFechada/TFRouter')(app);
+var idTFRouter = require('./app/routes/turmaFechada/idTFRouter')(app);
+var deletaTFRouter = require('./app/routes/turmaFechada/deletaTFRouter')(app);
+var insereTFRouter = require('./app/routes/turmaFechada/insereTFRouter')(app);
+var editaTFRouter = require('./app/routes/turmaFechada/editaTFRouter')(app);
 
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");

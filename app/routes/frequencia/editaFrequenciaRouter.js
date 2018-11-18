@@ -12,9 +12,9 @@ module.exports = function(app){
 
 		var id = req.params.id;
 
-		if(f.idDisciplina != undefined && f.idTurma != undefined && f.dataRegistro != undefined){
+		if(f.idDisciplina != undefined && f.idTurmaFechada != undefined && f.dataRegistro != undefined){
 
-			var sql = "UPDATE frequencia SET idDisciplina = '"+f.idDisciplina+"', idTurma = '"+f.idTurma+"', dataRegistro = '"+f.dataRegistro+"' WHERE idFrequencia="+id;
+			var sql = "UPDATE frequencia SET idDisciplina = '"+f.idDisciplina+"', idTurmaFechada = '"+f.idTurmaFechada+"', dataRegistro = '"+f.dataRegistro+"' WHERE idFrequencia="+id;
 
 			con.query(sql, function(err, success, fields){
 				if(err){

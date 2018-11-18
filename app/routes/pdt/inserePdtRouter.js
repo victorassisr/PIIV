@@ -4,26 +4,26 @@ module.exports = function(app){
 
 	var con = conMysql();
 
-	app.post('/frequencia',function(req, res){
+	app.post('/pdt',function(req, res){
 
 		console.log(req.body);
 
-		var f = req.body;
+		var pdt = req.body;
 
-		if(f.idDisciplina != undefined && f.idTurma != undefined && f.dataRegistro != undefined){
+		if(pdt.idProfessor != undefined && pdt.idTurmaFechada != undefined && pdt.idDisciplina != undefined){
 
-			var sql = "INSERT INTO frequencia(idDisciplina, idTurma, dataRegistro) VALUES('"+f.idDisciplina+"','"+f.idTurma+"','"+f.dataRegistro+"')";
+			var sql = "INSERT INTO professor_disciplina_turma(idDisciplina, idTurmaFechada, idProfessor) VALUES('"+pdt.idDisciplina+"','"+pdt.idTurmaFechada+"','"+pdt.idProfessor+"')";
 
 			con.query(sql, function(err, success, fields){
 				if(err){
 					throw err;
 				}
 
-				res.status(200).send({ frequencia : f });
+				res.status(200).send({ pdt : pdt });
 			}); //Query
 
 		} else {
-			res.status(200).send({ err : "O formato informado não é compativel!" });
+			res.status(400).send({ err : "O formato informado não é compativel!" });
 		}
 	});//Fim rota
 }
