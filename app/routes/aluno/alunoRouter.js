@@ -6,6 +6,12 @@ module.exports = function(app){
 
 	app.get('/aluno',function(req, res){
 
+		var logged = true;
+
+		if(!logged){
+			res.status(400).send({err: "Usuário não logado!"});
+		}
+
 			var sql = "SELECT * FROM aluno";
 
 			con.query(sql,function(err, resultSet, fields){

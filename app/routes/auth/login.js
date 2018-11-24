@@ -11,7 +11,7 @@ module.exports = function(app){
 			u = req.body.user;
 			p = req.body.pass;
 
-			var sqlLogin = "SELECT email, senha, idTipo, idUser FROM login WHERE email ='"+u+"' AND senha='"+p+"'";
+			var sqlLogin = "SELECT login, senha, idTipoUsuario, idUsuario FROM login WHERE login ='"+u+"' AND senha='"+p+"'";
 
 			con.query(sqlLogin, function(err, success, fields){
 				if(err){
@@ -33,6 +33,7 @@ module.exports = function(app){
 			if(req.body.pass == undefined || req.body.pass == ""){
 				res.status(400).send("Senha inválida.");
 			}
+			res.status(400).send({err: "Usuário não identificado."});
 		}
 	});//Fim rota
 }
