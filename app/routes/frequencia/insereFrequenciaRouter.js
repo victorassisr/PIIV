@@ -5,7 +5,7 @@ module.exports = function(app){
 	var con = conMysql();
 
 	app.post('/frequencia',function(req, res){
-
+/*
 		console.log(req.body);
 
 		var f = req.body;
@@ -18,12 +18,21 @@ module.exports = function(app){
 				if(err){
 					throw err;
 				}
+				sqlSearch = `select max(id) as id from frequencia where idDisciplina = '`f.idDisciplina`' and idTurmaFechada = '`+f.idTurmaFechada+`' and dataRegistro = '`+f.dataRegistro+`'`;
 
-				res.status(200).send({ frequencia : f });
+				con.query(sqlSearch, function(err, success, fields){
+					if(err){
+						throw err;
+					}
+
+					res.status(200).send({ success });
+				}); //Query
+				//res.status(200).send({ frequencia : f });
 			}); //Query
+
 
 		} else {
 			res.status(200).send({ err : "O formato informado não é compativel!" });
-		}
+		}*/
 	});//Fim rota
 }
