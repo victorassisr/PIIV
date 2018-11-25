@@ -82,6 +82,9 @@ var deletaHorarioRouter = require('./app/routes/horario/deletaHorarioRouter')(ap
 var insereHorarioRouter = require('./app/routes/horario/insereHorarioRouter')(app);
 var editaHorarioRouter = require('./app/routes/horario/editaHorarioRouter')(app);
 
+//Rotas Dias
+var dias = require('./app/routes/diassemana/diasSemanaRouter')(app);
+
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");
 });

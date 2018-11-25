@@ -10,7 +10,7 @@ module.exports = function(app){
 
 		var matricula = req.params.id;
 
-		if(req.body.nome != undefined && req.body.dataNascimento != undefined && req.body.serie != undefined && req.body.turma != undefined && req.body.ano_letivo != undefined){
+		if(req.body.nome != undefined && req.body.dataNascimento != undefined  && req.body.turma != undefined){
 			
 			var aluno = req.body;
 
@@ -20,7 +20,7 @@ module.exports = function(app){
 			var turma = aluno.turma;
 			var ano_letivo = aluno.ano_letivo;
 
-			var sql = "UPDATE aluno SET nome = '"+nome+"', serie = '"+serie+"', dataNascimento = '"+dataNascimento+"', turma = '"+turma+"', ano_letivo = '"+ano_letivo+"' WHERE matricula="+matricula;
+			var sql = "UPDATE aluno SET nome = '"+nome+"', dataNascimento = '"+dataNascimento+"', turma = '"+turma+"' WHERE matricula="+matricula;
 
 			con.query(sql, function(err, success, fields){
 				if(err){
