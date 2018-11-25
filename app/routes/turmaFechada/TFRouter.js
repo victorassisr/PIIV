@@ -34,12 +34,12 @@ module.exports = function(app){
 			}); //Query
 	});//Fim rota
 
-	//Retorna anos das turmas fechadas.
+	//Retorna id turmas fechadas   :idp = idProfessor, :idd=idDisciplina, :ano = anoLetivo.
 	app.get('/tf/search/:idp/:idd/:ano',function(req, res){
 		var x = req.params;
 		if(x.idp == undefined || x.idd == undefined || x.ano == undefined){
 			res.status(400).send({err : "O formato especificado não é válido!"});
-		}
+		} else{
 
 		var idP = x.idp;
 		var idD = x.idd;
@@ -59,5 +59,6 @@ module.exports = function(app){
 					res.status(200).send({ turma : resultSet });
 				}
 			}); //Query
+		}
 	});//Fim rota
 }

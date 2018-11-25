@@ -10,7 +10,7 @@ module.exports = function(app){
 
 		var f = req.body;
 
-		if(f.idDisciplina != undefined && f.idTurmaFechada != undefined && f.dataRegistro != undefined){
+		if(f.alunos != undefined && f.idDisciplina != undefined && f.idTurmaFechada != undefined && f.dataRegistro != undefined){
 
 			var sql = "INSERT INTO frequencia(idDisciplina, idTurmaFechada, dataRegistro) VALUES('"+f.idDisciplina+"','"+f.idTurmaFechada+"','"+f.dataRegistro+"')";
 
@@ -30,7 +30,7 @@ module.exports = function(app){
 
 					var alunos = req.body.alunos;
 
-					for(i in alunos){
+					for(var i in alunos){
 						console.log();
 						sqlFrequencia = `insert into frequencia_aluno(idAluno, idFrequencia, status) VALUES ('`+alunos[i].idAluno+`','`+idRes+`','`+alunos[i].status+`')`
 					

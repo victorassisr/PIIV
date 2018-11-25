@@ -85,6 +85,9 @@ var editaHorarioRouter = require('./app/routes/horario/editaHorarioRouter')(app)
 //Rotas Dias
 var dias = require('./app/routes/diassemana/diasSemanaRouter')(app);
 
+//Rotas Notas
+var nota = require('./app/routes/nota/nota')(app);
+
 app.listen(3000, function(){
 	console.log("servidor rodando na porta 3000");
 });
