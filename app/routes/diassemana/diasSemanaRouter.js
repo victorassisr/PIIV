@@ -21,7 +21,7 @@ module.exports = function(app){
 
 			if(req.body.descDia == undefined){
 				res.status(400).send({err: "O formato especificado não é válido!"});
-			}
+			} else {
 
 			var sql = `insert into diassemana(descDia) values ('`+req.body.descDia+`')`;
 
@@ -32,6 +32,7 @@ module.exports = function(app){
 
 				res.status(200).send({ dia : req.body.descDia });
 			}); //Query
+		} 
 	});//Fim rota
 
 	app.put('/dia/:id',function(req, res){
