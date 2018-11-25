@@ -39,7 +39,7 @@ module.exports = function(app){
 
 			if(req.params.id == undefined || req.body.descDia == undefined){
 				res.status(400).send({err: "O formato especificado não é válido!"});
-			}
+			} else {
 
 			var sql = `update diassemana set descDia = '`+req.body.descDia+`' where idDia = '`+req.params.id+`'`;
 
@@ -50,13 +50,14 @@ module.exports = function(app){
 
 				res.status(200).send({ dia : req.body.descDia });
 			}); //Query
+		}
 	});//Fim rota
 
 	app.delete('/dia/:id',function(req, res){
 
 			if(req.params.id == undefined){
 				res.status(400).send({err: "O formato especificado não é válido!"});
-			}
+			} else {
 
 			var sql = `delete from diassemana where idDia = '`+req.params.id+`'`;
 
@@ -67,6 +68,7 @@ module.exports = function(app){
 
 				res.status(200).send({ affectedRows : resultSet.affectedRows });
 			}); //Query
+		}
 	});//Fim rota
 
 	app.get('/dia/:id',function(req, res){
