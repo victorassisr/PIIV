@@ -11,7 +11,10 @@ module.exports = function(app){
 			var sql = `select * from professor as p
 				inner join professor_disciplina_turma as pdt on p.idprofessor = pdt.idprofessor
 				inner join disciplina as d on pdt.idDisciplina = d.iddisciplina
-				inner join turma as t on t.idturmaFechada = pdt.idturmaFechada WHERE idPDT=`+id;
+				inner join turmafechada as t on t.idturmaFechada = pdt.idturmaFechada
+				inner join turma as trm on trm.idTurma = t.idTurma
+				inner join serie as s on t.idSerie = s.idSerie
+				WHERE idPDT=`+id;
 
 
 

@@ -40,4 +40,23 @@ module.exports = function(app){
 			}); //Query
 	});//Fim rota
 
+	app.get('/pdt/all/:id',function(req, res){
+
+		var idProfessor = req.params.id;
+
+			var sql = `select * from professor as p
+				inner join professor_disciplina_turma as pdt on p.idprofessor = pdt.idprofessor
+				inner join disciplina as d on pdt.idDisciplina = d.iddisciplina
+				inner join turmafechada as t on t.idturmaFechada = pdt.idturmaFechada
+				inner join turma as trm on t.idturma = trm.idturma where pdt.idprofessor = '`+idProfessor+`'`;
+
+			con.query(sql,function(err, resultSet, fields){
+				if(err){
+					throw err;
+				}
+
+				res.status(200).send({ turmas : resultSet });
+			}); //Query
+	});//Fim rota
+
 }
