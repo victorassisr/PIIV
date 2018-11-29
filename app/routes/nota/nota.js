@@ -51,4 +51,25 @@ module.exports = function(app){
 			res.status(200).send({ err : "O formato informado não é compativel!" });
 		}
 	});//Fim rota
+
+
+
+
+app.get('/nota/:idd/:idt',function(req, res){
+
+	var idDisciplina = req.params.idd;
+	var idTurmaFechada = req.params.idt;
+
+			var sql = `select * from nota as n
+inner join nota_aluno as an on n.idNota = an.idNota
+where iddisciplina = '`+idDisciplina+`' and idTurmaFechada ='`+idTurmaFechada+`'`;
+
+			con.query(sql,function(err, resultSet, fields){
+				if(err){
+					throw err;
+				}
+
+				res.status(200).send({ notas : resultSet });
+			}); //Query
+	});//Fim rota
 }

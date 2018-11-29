@@ -13,7 +13,7 @@ module.exports = function(app){
 
 		if(h.idPDT != undefined && h.idDia != undefined && h.horario != undefined){
 
-			var sql = "INSERT INTO horario(idPDT, idDia, horario) VALUES('"+idPDT+"','"+idDia+"','"+horario+"')";
+			var sql = "INSERT INTO horario(idPDT, idDia, horario) VALUES('"+h.idPDT+"','"+h.idDia+"','"+h.horario+"')";
 
 			con.query(sql, function(err, success, fields){
 				if(err){

@@ -11,7 +11,9 @@ module.exports = function(app){
 			u = req.body.user;
 			p = req.body.pass;
 
-			var sqlLogin = "SELECT login, senha, idTipoUsuario, idUsuario FROM login WHERE login ='"+u+"' AND senha='"+p+"'";
+			console.log(req.body);
+
+			var sqlLogin = "SELECT * FROM login WHERE login ='"+u+"' AND senha='"+p+"'";
 
 			con.query(sqlLogin, function(err, success, fields){
 				if(err){
@@ -21,12 +23,12 @@ module.exports = function(app){
 					if(success[0] != undefined){
 						res.status(200).send({cred : success});
 					} else {
-						res.status(400).send({err: "Usuário não identificado."});
+						res.status(200).send({err: "Usuário não identificado."});
 					}
 				}
 			}); //Query
 
-		} else {
+		} /*else {
 			if(req.body.user == undefined || req.body.user == ""){
 				res.status(400).send("Usuário inválido.");
 			}
@@ -34,6 +36,6 @@ module.exports = function(app){
 				res.status(400).send("Senha inválida.");
 			}
 			res.status(400).send({err: "Usuário não identificado."});
-		}
+		}*/
 	});//Fim rota
 }
